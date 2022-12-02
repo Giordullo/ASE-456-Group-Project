@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:climate/utilities/constants.dart';
 import 'package:climate/services/weather.dart';
 import 'city_screen.dart';
+import 'map_screen.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({this.locationWeather});
@@ -72,6 +73,27 @@ class _LocationScreenState extends State<LocationScreen> {
                     },
                     child: Icon(
                       Icons.near_me,
+                      size: 50.0,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      var typedName = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return MapScreen();
+                          },
+                        ),
+                      );
+                      if (typedName != null) {
+                        var weatherData =
+                        await weather.getCityWeather(typedName);
+                        updateUI(weatherData);
+                      }
+                    },
+                    child: Icon(
+                      Icons.map,
                       size: 50.0,
                     ),
                   ),
