@@ -3,6 +3,8 @@ import 'package:climate/utilities/constants.dart';
 import 'package:climate/services/weather.dart';
 import 'city_screen.dart';
 import 'map_screen.dart';
+import 'package:climate/main.dart';
+import 'package:provider/provider.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({this.locationWeather});
@@ -47,6 +49,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    DarkMode _mode = Provider.of<DarkMode>(context);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -115,6 +118,15 @@ class _LocationScreenState extends State<LocationScreen> {
                     },
                     child: Icon(
                       Icons.location_city,
+                      size: 50.0,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      await _mode.toggleMode();
+                    },
+                    child: Icon(
+                      _mode.currentbool() ? Icons.dark_mode_outlined : Icons.dark_mode,
                       size: 50.0,
                     ),
                   ),
