@@ -91,7 +91,7 @@ class _LocationScreenState extends State<LocationScreen> {
                       );
                       if (typedName != null) {
                         var weatherData =
-                        await weather.getCityWeather(typedName);
+                            await weather.getCityWeather(typedName);
                         updateUI(weatherData);
                       }
                     },
@@ -126,7 +126,9 @@ class _LocationScreenState extends State<LocationScreen> {
                       await _mode.toggleMode();
                     },
                     child: Icon(
-                      _mode.currentbool() ? Icons.dark_mode_outlined : Icons.dark_mode,
+                      _mode.currentbool()
+                          ? Icons.dark_mode_outlined
+                          : Icons.dark_mode,
                       size: 50.0,
                     ),
                   ),
@@ -148,10 +150,10 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 15.0),
+                padding: EdgeInsets.all(10.0),
                 child: Text(
                   '$weatherMessage in $cityName',
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.center,
                   style: kMessageTextStyle,
                 ),
               ),
