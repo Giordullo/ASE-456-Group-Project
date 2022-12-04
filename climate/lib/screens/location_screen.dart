@@ -1,3 +1,4 @@
+import 'package:climate/screens/weather_forecast_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:climate/utilities/constants.dart';
 import 'package:climate/services/weather.dart';
@@ -83,6 +84,26 @@ class _LocationScreenState extends State<LocationScreen> {
                     },
                     child: Icon(
                       Icons.near_me,
+                      size: 50.0,
+                    ),
+                  ), TextButton(
+                    onPressed: () async {
+                      var weatherData = await WeatherModel().getFiveDayWeatherForecast(cityName);
+                      var typedName = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return WeatherForecastScreen(weatherData, cityName);
+                          },
+                        ),
+                      );
+                      if (typedName != null) {
+                        var weatherData = await weather.getLocationWeather();
+                        updateUI(weatherData);
+                      }
+                    },
+                    child: Icon(
+                      Icons.satellite_alt,
                       size: 50.0,
                     ),
                   ),

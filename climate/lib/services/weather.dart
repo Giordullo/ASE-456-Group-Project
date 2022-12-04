@@ -1,8 +1,10 @@
 import 'location.dart';
 import 'networking.dart';
+import 'package:climate/models/weather_daily.dart';
 
 const apiKey = 'c8816ba7bf255bcb06664ac735cac0ec';
 const openWeatherMapURL = 'https://api.openweathermap.org/data/2.5/weather';
+const oneCallWeatherMapURL = 'https://api.openweathermap.org/data/2.5/onecall';
 
 //https://api.openweathermap.org/data/2.5/weather';
 // '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric'
@@ -26,6 +28,22 @@ class WeatherModel {
 
     var weatherData = await networkHelper.getData();
     return weatherData;
+  }
+
+  Future<dynamic> getFiveDayWeatherForecast(String cityName) async {
+    var str = '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric';
+    print(str);
+    NetworkHelper networkHelper = NetworkHelper(str);
+    var weatherData = await networkHelper.getData();
+
+    var str2 = '$oneCallWeatherMapURL?lat=${weatherData['coord']['lat']}&lon=${weatherData['coord']['lon']}&appid=$apiKey&units=metric';
+    print(str2);
+    NetworkHelper networkHelper2 = NetworkHelper(str2);
+
+    var jsonString = await networkHelper2.getData();
+    var dailyWeatherForecastData = DailyWeatherData.fromJSON(jsonString);
+
+    return dailyWeatherForecastData.daily;
   }
 
   String getWeatherIcon(int condition) {
