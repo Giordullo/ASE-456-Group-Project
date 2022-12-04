@@ -59,4 +59,24 @@ class WeatherModel {
       return 'Bring a 🧥 just in case';
     }
   }
+
+  String getWeatherImage(int condition) {
+    if (condition < 300) {
+      return 'images/weather_thunder.jpg';
+    } else if (condition < 400) {
+      return 'images/weather_drizzle.jpg';
+    } else if (condition < 600) {
+      return 'images/weather_rain.jpg';
+    } else if (condition < 700) {
+      return 'images/weather_snow.jpg';
+    } else if (condition < 800) {
+      return 'images/weather_foggy.jpg';
+    } else if (condition == 800) {
+      return 'images/weather_clear.jpg';
+    } else if (condition <= 804) {
+      return 'images/weather_cloudy.jpg';
+    } else {
+      return 'images/weather_clear.jpg';
+    }
+  }
 }
