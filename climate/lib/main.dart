@@ -5,6 +5,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:climate/services/location.dart';
 import 'services/feedback.dart';
+import 'package:climate/services/background.dart';
+
 
 class DarkMode with ChangeNotifier {
   static bool _darkMode = true;
@@ -42,6 +44,7 @@ class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     DarkMode _mode = Provider.of<DarkMode>(context);
+    Background.RunLocalNotifications();
     return MaterialApp(
       theme: _mode.current(),
       home: LoadingScreen(),
