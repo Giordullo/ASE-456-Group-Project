@@ -16,7 +16,7 @@ dependencies:
   http: ^0.13.3
   flutter_spinkit: ^3.1.0
   carousel_slider: ^4.1.1
-  push_notification: ^1.1.1
+  awesome_notifications: ^0.6.21
   flutter_map: 3.0.0
   latlong: 0.6.1
   provider: 6.0.4
