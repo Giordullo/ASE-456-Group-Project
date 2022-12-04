@@ -10,10 +10,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+  workmanager: ^0.5.1
   cupertino_icons: ^0.1.2
   geolocator: ^6.2.0
   http: ^0.13.3
   flutter_spinkit: ^3.1.0
+  carousel_slider: ^4.1.1
+  push_notification: ^1.1.1
   flutter_map: 3.0.0
   latlong: 0.6.1
   provider: 6.0.4
