@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:climate/utilities/constants.dart';
+import 'package:climate/services/feedback.dart';
 
 class CityScreen extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class _CityScreenState extends State<CityScreen> {
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   onPressed: () {
+                    SoundService.instance.playTapDownSound();
                     Navigator.pop(context);
                   },
                   child: Icon(
@@ -49,6 +51,7 @@ class _CityScreenState extends State<CityScreen> {
               ),
               TextButton(
                 onPressed: () {
+                  SoundService.instance.playTapDownSound();
                   Navigator.pop(context, cityName);
                 },
                 child: Text(

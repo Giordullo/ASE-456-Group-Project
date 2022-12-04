@@ -4,11 +4,13 @@ import 'package:climate/services/weather.dart';
 import 'city_screen.dart';
 import 'map_screen.dart';
 import 'package:climate/main.dart';
+import 'favorite_city_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:climate/services/feedback.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({this.locationWeather});
-
+  List<String> cities = [''];
   final locationWeather;
 
   @override
@@ -71,8 +73,10 @@ class _LocationScreenState extends State<LocationScreen> {
                 children: <Widget>[
                   TextButton(
                     onPressed: () async {
+                      SoundService.instance.playTapDownSound();
                       var weatherData = await weather.getLocationWeather();
                       updateUI(weatherData);
+                      SoundService.instance.playTapDownSound();
                     },
                     child: Icon(
                       Icons.near_me,
@@ -81,6 +85,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                   TextButton(
                     onPressed: () async {
+                      SoundService.instance.playTapDownSound();
                       var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -102,6 +107,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                   TextButton(
                     onPressed: () async {
+                      SoundService.instance.playTapDownSound();
                       var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -123,6 +129,30 @@ class _LocationScreenState extends State<LocationScreen> {
                   ),
                   TextButton(
                     onPressed: () async {
+                      SoundService.instance.playTapDownSound();
+                      List<String> cities = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return favorite_city_screen(widget.cities);
+                          },
+                        ),
+                      );
+
+                      if (cities != null) {
+                        setState(() {
+                          widget.cities = cities;
+                        });
+                      }
+                    },
+                    child: Icon(
+                      Icons.favorite,
+                      size: 50.0,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      SoundService.instance.playTapDownSound();
                       await _mode.toggleMode();
                     },
                     child: Icon(
