@@ -31,7 +31,7 @@ class _favorite_city_screen extends State<favorite_city_screen> {
 
   Widget itemCard(element) {
     return SizedBox(
-      width: 600,
+      width: 660,
       height: 100,
       child: Card(
         elevation: 0,
