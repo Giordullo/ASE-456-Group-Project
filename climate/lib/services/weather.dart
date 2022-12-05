@@ -30,7 +30,7 @@ class WeatherModel {
     return weatherData;
   }
 
-  Future<dynamic> getFiveDayWeatherForecast(String cityName) async {
+  Future<dynamic> getSevenDayWeatherForecast(String cityName) async {
     var str = '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric';
     print(str);
     NetworkHelper networkHelper = NetworkHelper(str);
