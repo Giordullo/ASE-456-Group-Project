@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 
 class SoundService {
   // private constructor
@@ -13,6 +14,7 @@ class SoundService {
   }
 
   Future<void> playTapDownSound() async {
+    HapticFeedback.lightImpact();
     await _player.play(
       'hitmarker_2.mp3',
       mode: PlayerMode.LOW_LATENCY,
