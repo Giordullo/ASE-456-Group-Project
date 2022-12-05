@@ -29,8 +29,8 @@ class WeatherForecastScreen extends StatelessWidget {
         ),
       ),
       constraints: BoxConstraints.expand(),
-      child: SafeArea(child:
-      Column(
+      child: SafeArea(
+          child: Column(
         children: <Widget>[
           Align(
             alignment: Alignment.topLeft,
@@ -55,54 +55,65 @@ class WeatherForecastScreen extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 10),
                   child: Text(
                     '${city} : 7 Day Forecast',
-                    style: TextStyle(color: Colors.white, fontSize: 17, decoration: TextDecoration.none),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        decoration: TextDecoration.none),
                   ),
                 ),
                 SizedBox(
                   height: 500,
                   child: ListView.builder(
                       itemCount: 7,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
                             Container(
                               height: 50,
-                              padding: const EdgeInsets.only(left: 10, right: 10),
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 20),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   SizedBox(
                                     width: 80,
                                     child: Text(
                                       getDay(list[index].date),
-                                      style: TextStyle(color: Colors.white, fontSize: 15, decoration: TextDecoration.none),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          decoration: TextDecoration.none),
                                     ),
                                   ),
                                   SizedBox(
                                       width: 70,
                                       height: 30,
                                       child: Text(
-                                        WeatherModel().getWeatherIcon(list[index].weather[0].id),
-                                      )
-                                  ),
+                                        WeatherModel().getWeatherIcon(
+                                            list[index].weather[0].id),
+                                      )),
                                   Text(
                                     '${list[index].temp.max}°/${list[index].temp.min}°',
-                                    style: TextStyle(color: Colors.white, fontSize: 15, decoration: TextDecoration.none),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        decoration: TextDecoration.none),
                                   ),
                                 ],
                               ),
                             )
                           ],
                         );
-                      }
-                  ),
+                      }),
                 )
               ],
             ),
           ),
         ],
-      )
-      ),
+      )),
     );
   }
 }
