@@ -87,7 +87,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ), TextButton(
                     onPressed: () async {
-                      var weatherData = await WeatherModel().getFiveDayWeatherForecast(cityName);
+                      var weatherData = await WeatherModel().getSevenDayWeatherForecast(cityName);
                       var typedName = await Navigator.push(
                         context,
                         MaterialPageRoute(
