@@ -11,7 +11,7 @@ import 'package:climate/services/feedback.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({this.locationWeather});
-  List<String> cities = [''];
+  List<String> cities = [];
   final locationWeather;
 
   @override
@@ -80,7 +80,6 @@ class _LocationScreenState extends State<LocationScreen> {
                       SoundService.instance.playTapDownSound();
                       var weatherData = await weather.getLocationWeather();
                       updateUI(weatherData);
-                      SoundService.instance.playTapDownSound();
                     },
                     child: Icon(
                       Icons.near_me,

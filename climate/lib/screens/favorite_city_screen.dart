@@ -133,9 +133,15 @@ class _favoriteItem extends State<FavoriteItem> {
   String weatherIcon;
   String cityName;
   String weatherMessage;
+  int timezone;
+  DateTime time;
+  int hour;
+  int minute;
+
   void initState() {
     super.initState();
     cityName = widget.cityName;
+
     start();
   }
 
@@ -151,14 +157,24 @@ class _favoriteItem extends State<FavoriteItem> {
         weatherIcon = 'Error';
         weatherMessage = 'Unable to get weather data';
         cityName = '';
+        time = DateTime.now();
+
+        hour = 0;
+        minute = 0;
         return;
       }
+      timezone = weatherData['timezone'];
+      time = DateTime.now().add(Duration(
+          seconds: timezone - DateTime.now().timeZoneOffset.inSeconds));
+
       double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       var condition = weatherData['weather'][0]['id'];
       weatherIcon = weather.getWeatherIcon(condition);
       weatherMessage = weather.getMessage(temperature);
       cityName = weatherData['name'];
+      hour = time.hour;
+      minute = time.minute;
     });
   }
 
@@ -166,7 +182,7 @@ class _favoriteItem extends State<FavoriteItem> {
   Widget build(BuildContext context) {
     return Row(children: [
       Text(
-        widget.cityName + ' is $temperature degrees C ',
+        widget.cityName + ' is $temperature degrees C $hour:$minute',
         style: TextStyle(
           fontSize: 20,
         ),
